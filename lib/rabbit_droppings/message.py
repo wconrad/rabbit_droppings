@@ -10,3 +10,6 @@ class Message:
 
     def attrs(self):
         return self.__dict__
+
+    def to_message(self):
+        return self

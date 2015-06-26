@@ -18,6 +18,6 @@ class TestReaderWriter(unittest.TestCase):
         message_in = reader.read()
         self.assertEquals(message_out.payload, message_in.payload)
         self.assertEquals(message_out.properties, message_in.properties)
- 
+
 if __name__ == '__main__':
     unittest.main()
