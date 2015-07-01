@@ -15,7 +15,7 @@ setup(
     long_description_markdown_filename='README.markdown',
     name=olio_msg.NAME,
     version=olio_msg.VERSION,
-    packages=['rabbit_droppings'],
+    packages=['lib/rabbit_droppings'],
     setup_requires=['setuptools-markdown'],
     scripts=SCRIPTS,
     install_requires=[
