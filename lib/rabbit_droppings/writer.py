@@ -1,3 +1,4 @@
+from __future__ import print_function
 import json
 
 class Writer:
@@ -9,4 +10,4 @@ class Writer:
         message = message.to_message()
         attrs = message.attrs()
         json_attrs = json.dumps(attrs)
-        self._output.write(json_attrs)
+        print(json_attrs, file=self._output)
