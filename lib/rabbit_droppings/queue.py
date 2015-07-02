@@ -15,8 +15,13 @@ class Queue:
     def read(self):
         method_frame, header_frame, body = self._channel.basic_get(self.name)
         if method_frame:
-            message = PikaMessage(header_frame, body).to_message()
-            self._channel.basic_ack(method_frame.delivery_tag)
+            message = PikaMessage(method_frame,
+                                  header_frame,
+                                  body).to_message()
             return message
         else:
             return None
+
+    def ack(self, message):
+        delivery_tag = message.delivery_info["delivery_tag"]
+        self._channel.basic_ack(delivery_tag)

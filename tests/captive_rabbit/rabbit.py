@@ -14,10 +14,13 @@ class Rabbit:
 
     def make_queue(self):
         self.connect()
-        queue = Queue(self._channel)
+        queue = Queue(self)
         self._queues.append(queue)
         queue.create()
         return queue
+
+    def channel(self):
+        return self._channel;
 
     def teardown(self):
         for queue in self._queues:

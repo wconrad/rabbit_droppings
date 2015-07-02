@@ -3,7 +3,8 @@ from message import Message
 
 class PikaMessage:
 
-    def __init__(self, properties, body):
+    def __init__(self, delivery_info, properties, body):
+        self._delivery_info = delivery_info
         self._properties = properties
         self._body = body
 
@@ -25,4 +26,7 @@ class PikaMessage:
             "app_id": self._properties.app_id,
             "cluster_id": self._properties.cluster_id,
             }
+        message.delivery_info = {
+            "delivery_tag": self._delivery_info.delivery_tag
+        }
         return message
