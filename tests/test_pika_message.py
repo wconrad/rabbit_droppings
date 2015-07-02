@@ -8,7 +8,7 @@ import unittest
 class TestPikaMessage(unittest.TestCase):
 
     def test_to_message(self):
-        payload = 'Your ad in this spot'
+        body = 'Your ad in this spot'
         now = time.time()
         properties = pika.BasicProperties(
             content_type='text/plain',
@@ -25,9 +25,9 @@ class TestPikaMessage(unittest.TestCase):
             user_id="guest",
             app_id="foo.py",
             cluster_id="cluster1")
-        pika_message = rabbit_droppings.PikaMessage(properties, payload)
+        pika_message = rabbit_droppings.PikaMessage(properties, body)
         message = pika_message.to_message()
-        self.assertEqual(message.payload, 'Your ad in this spot')
+        self.assertEqual(message.body, 'Your ad in this spot')
         self.assertEqual(message.properties['content_encoding'], '8BIT')
         self.assertEqual(message.properties['headers'], {"foo": "bar"})
         self.assertEqual(message.properties['delivery_mode'], 2)

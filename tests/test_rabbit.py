@@ -22,8 +22,8 @@ class TestRabbit(unittest.TestCase):
         rabbit_config.host = self.captive_rabbit.host
         rabbit = rabbit_droppings.Rabbit(rabbit_config)
         queue = rabbit.queue(captive_queue.name)
-        self.assertEquals(queue.read().payload, "foo")
-        self.assertEquals(queue.read().payload, "bar")
+        self.assertEquals(queue.read().body, "foo")
+        self.assertEquals(queue.read().body, "bar")
         self.assertEquals(queue.read(), None)
 
 if __name__ == '__main__':

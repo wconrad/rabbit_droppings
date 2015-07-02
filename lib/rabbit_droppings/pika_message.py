@@ -4,13 +4,13 @@ from message import Message
 
 class PikaMessage:
 
-    def __init__(self, properties, payload):
+    def __init__(self, properties, body):
         self._properties = properties
-        self._payload = payload
+        self._body = body
 
     def to_message(self):
         message = Message()
-        message.payload = self._payload
+        message.body = self._body
         message.properties = {
             "content_encoding": self._properties.content_encoding,
             "headers": self._properties.headers,

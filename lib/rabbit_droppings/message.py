@@ -1,9 +1,9 @@
 class Message:
 
     def __init__(self,
-                 payload='',
+                 body='',
                  properties=None):
-        self.payload = payload
+        self.body = body
         if properties == None:
             properties = {}
         self.properties = properties

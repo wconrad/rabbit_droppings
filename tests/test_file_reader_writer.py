@@ -12,8 +12,8 @@ class TestFileWriter(unittest.TestCase):
         file_writer.write(self.make_message("1"))
         file_writer.write(self.make_message("2"))
         file_reader = rabbit_droppings.FileReader(path)
-        self.assertEquals(file_reader.read().payload, "1")
-        self.assertEquals(file_reader.read().payload, "2")
+        self.assertEquals(file_reader.read().body, "1")
+        self.assertEquals(file_reader.read().body, "2")
         self.assertEquals(file_reader.read(), None)
 
     def test_close(self):
@@ -22,7 +22,7 @@ class TestFileWriter(unittest.TestCase):
         file_writer.write(self.make_message("1"))
         file_writer.write(self.make_message("2"))
         file_reader = rabbit_droppings.FileReader(path)
-        self.assertEquals(file_reader.read().payload, "1")
+        self.assertEquals(file_reader.read().body, "1")
         file_reader.close()
         self.assertRaises(ValueError, file_reader.read)
 
@@ -32,9 +32,9 @@ class TestFileWriter(unittest.TestCase):
         tf.close()
         return path
 
-    def make_message(self, payload):
+    def make_message(self, body):
         message = rabbit_droppings.Message()
-        message.payload = payload
+        message.body = body
         return message
         
 if __name__ == '__main__':
