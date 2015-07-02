@@ -3,7 +3,6 @@ import test_setup
 import rabbit_droppings
 import tempfile
 import unittest
-import sys #DEBUG
 
 class TestFileWriter(unittest.TestCase):
 

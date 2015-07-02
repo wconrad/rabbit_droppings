@@ -1,6 +1,6 @@
 import json
 
-from message import *
+from message import Message
 
 class Reader:
 

@@ -1,4 +1,4 @@
-from writer import *
+from writer import Writer
 
 class FileWriter:
 

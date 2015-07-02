@@ -1,4 +1,4 @@
-from reader import *
+from reader import Reader
 
 class FileReader:
 
