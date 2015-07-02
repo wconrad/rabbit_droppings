@@ -25,3 +25,8 @@ class Queue:
     def ack(self, message):
         delivery_tag = message.delivery_info["delivery_tag"]
         self._channel.basic_ack(delivery_tag)
+
+    def publish(self, message):
+        self._channel.basic_publish(exchange='',
+                                    routing_key=self.name,
+                                    body=message.body)
