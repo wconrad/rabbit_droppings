@@ -1,3 +1,4 @@
+import logging
 import pika
 
 from queue import Queue
@@ -9,6 +10,7 @@ class Rabbit:
         self.host = "localhost"
         self._queues = []
         self._connected = False
+        self._configure_pika_logging()
 
     def make_queue(self):
         self.connect()
@@ -38,3 +40,7 @@ class Rabbit:
             return
         self._connection.close()
         self._connected = False
+
+    def _configure_pika_logging(self):
+        pika_logger = logging.getLogger('pika')
+        pika_logger.setLevel(logging.CRITICAL)
