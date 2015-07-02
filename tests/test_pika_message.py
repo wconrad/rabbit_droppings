@@ -1,9 +1,10 @@
-import test_setup
+import test_setup  # noqa
 
 import pika
 import rabbit_droppings
 import time
 import unittest
+
 
 class TestPikaMessage(unittest.TestCase):
 
@@ -12,7 +13,7 @@ class TestPikaMessage(unittest.TestCase):
         now = time.time()
         properties = pika.BasicProperties(
             content_type='text/plain',
-            content_encoding = '8BIT',
+            content_encoding='8BIT',
             headers={"foo": "bar"},
             delivery_mode=2,
             priority=0,

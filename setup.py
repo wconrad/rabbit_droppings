@@ -2,7 +2,6 @@
 
 from setuptools import setup
 import olio_msg
-import os
 
 SCRIPTS = [
     'bin/rabbit_droppings',

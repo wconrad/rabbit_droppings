@@ -4,7 +4,7 @@ class Message:
                  body='',
                  properties=None):
         self.body = body
-        if properties == None:
+        if properties is None:
             properties = {}
         self.properties = properties
 

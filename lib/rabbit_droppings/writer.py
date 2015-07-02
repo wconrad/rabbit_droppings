@@ -1,6 +1,7 @@
 from __future__ import print_function
 import json
 
+
 class Writer:
 
     def __init__(self, output):

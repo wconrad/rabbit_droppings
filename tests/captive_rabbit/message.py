@@ -1,5 +1,3 @@
-import uuid
-
 class Message:
 
     def __init__(self, method_frame, header_frame, body):

@@ -2,6 +2,7 @@ import pika
 
 from rabbit_droppings.queue import Queue
 
+
 class Rabbit:
 
     def __init__(self, config):

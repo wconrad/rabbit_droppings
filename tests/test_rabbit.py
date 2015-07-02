@@ -1,10 +1,9 @@
-import test_setup
+import test_setup  # noqa
 
-from captive_rabbit.queue import Queue
-from captive_rabbit.rabbit import Rabbit
 import captive_rabbit.rabbit
 import rabbit_droppings
 import unittest
+
 
 class TestRabbit(unittest.TestCase):
 

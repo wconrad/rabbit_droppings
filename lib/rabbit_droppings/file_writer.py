@@ -1,5 +1,6 @@
 from writer import Writer
 
+
 class FileWriter:
 
     def __init__(self, path):

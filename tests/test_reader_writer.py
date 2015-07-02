@@ -1,8 +1,9 @@
-import test_setup
+import test_setup  # noqa
 
 import StringIO
 import rabbit_droppings
 import unittest
+
 
 class TestReaderWriter(unittest.TestCase):
 
@@ -12,7 +13,7 @@ class TestReaderWriter(unittest.TestCase):
         message_out.body = "body goes here"
         message_out.properties = {"headers": {"foo": "bar"}}
         writer = rabbit_droppings.Writer(io)
-        writer.write(message_out) 
+        writer.write(message_out)
         io.seek(0)
         reader = rabbit_droppings.Reader(io)
         message_in = reader.read()

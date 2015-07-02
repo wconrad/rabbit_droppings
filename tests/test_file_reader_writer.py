@@ -1,8 +1,9 @@
-import test_setup
+import test_setup   # noqa
 
 import rabbit_droppings
 import tempfile
 import unittest
+
 
 class TestFileWriter(unittest.TestCase):
 
@@ -36,6 +37,6 @@ class TestFileWriter(unittest.TestCase):
         message = rabbit_droppings.Message()
         message.body = body
         return message
-        
+
 if __name__ == '__main__':
     unittest.main()

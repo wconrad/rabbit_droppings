@@ -1,7 +1,5 @@
-import uuid
-
-from message import Message
 from pika_message import PikaMessage
+
 
 class Queue:
 

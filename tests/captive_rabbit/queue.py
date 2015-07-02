@@ -2,6 +2,7 @@ import uuid
 
 from message import Message
 
+
 class Queue:
 
     def __init__(self, channel):

@@ -2,6 +2,7 @@ import json
 
 from message import Message
 
+
 class Reader:
 
     def __init__(self, input):

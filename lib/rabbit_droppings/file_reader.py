@@ -1,5 +1,6 @@
 from reader import Reader
 
+
 class FileReader:
 
     def __init__(self, path):

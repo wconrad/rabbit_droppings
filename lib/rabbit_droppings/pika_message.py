@@ -1,6 +1,5 @@
-import json
-
 from message import Message
+
 
 class PikaMessage:
 
