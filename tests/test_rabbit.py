@@ -82,6 +82,16 @@ class TestRabbit(unittest.TestCase):
     def test_write(self):
         captive_queue = self.captive_rabbit.make_queue()
         queue = self.rabbit.queue(captive_queue.name)
+        queue.publish(rabbit_droppings.Message("foo"))
+        queue.publish(rabbit_droppings.Message("bar"))
+        self.rabbit.disconnect()
+        self.assertEquals(captive_queue.read().body, "foo")
+        self.assertEquals(captive_queue.read().body, "bar")
+        self.assertEquals(captive_queue.read(), None)
+
+    def test_write_attributes(self):
+        captive_queue = self.captive_rabbit.make_queue()
+        queue = self.rabbit.queue(captive_queue.name)
         message = rabbit_droppings.Message()
         message.body = "body"
         now = math.floor(time.time())
