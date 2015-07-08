@@ -17,10 +17,16 @@ class Queue:
     def delete(self):
         self._channel().queue_delete(self.name)
 
-    def publish(self, body):
+    def publish(self, body, properties=None):
+        """
+        args:
+          body [str]
+          properties [pika.spec.BasicProperties]
+        """
         self._channel().basic_publish(exchange='',
-                                    routing_key=self.name,
-                                    body=body)
+                                      routing_key=self.name,
+                                      properties=properties,
+                                      body=body)
 
     def read(self):
         method_frame, header_frame, body = self._channel().basic_get(self.name)

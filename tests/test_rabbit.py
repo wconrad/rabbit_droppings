@@ -1,6 +1,7 @@
 import test_setup  # noqa
 
 import math
+import pika
 import time
 import unittest
 
@@ -40,6 +41,43 @@ class TestRabbit(unittest.TestCase):
         self.assertEquals(queue.read(), None)
         self.rabbit.disconnect()
         self.assertEquals(captive_queue.read(), None)
+
+    def test_read_properties(self):
+        now = math.floor(time.time())
+        properties = pika.BasicProperties(
+            content_type='text/plain',
+            content_encoding='8BIT',
+            headers={'foo': 'bar'},
+            delivery_mode=2,
+            priority=0,
+            correlation_id='abc123',
+            reply_to='reply_queue',
+            expiration='12345678',
+            message_id='def456',
+            timestamp=now,
+            type='test_message',
+            user_id='guest',
+            app_id='foo.py',
+            cluster_id='cluster1')
+        captive_queue = self.captive_rabbit.make_queue()
+        captive_queue.publish("foo", properties=properties)
+        queue = self.rabbit.queue(captive_queue.name)
+        message = self.read_and_ack(queue)
+        self.assertEqual(message.body, "foo")
+        self.assertEqual(message.properties['content_type'], 'text/plain')
+        self.assertEqual(message.properties['content_encoding'], '8BIT')
+        self.assertEqual(message.properties['headers'], {'foo': 'bar'})
+        self.assertEqual(message.properties['delivery_mode'], 2)
+        self.assertEqual(message.properties['priority'], 0)
+        self.assertEqual(message.properties['correlation_id'], 'abc123')
+        self.assertEqual(message.properties['reply_to'], 'reply_queue')
+        self.assertEqual(message.properties['expiration'], '12345678')
+        self.assertEqual(message.properties['message_id'], 'def456')
+        self.assertEqual(message.properties['timestamp'], now)
+        self.assertEqual(message.properties['type'], 'test_message')
+        self.assertEqual(message.properties['user_id'], 'guest')
+        self.assertEqual(message.properties['app_id'], 'foo.py')
+        self.assertEqual(message.properties['cluster_id'], 'cluster1')
 
     def test_write(self):
         captive_queue = self.captive_rabbit.make_queue()
