@@ -1,8 +1,11 @@
 import test_setup  # noqa
 
+import math
+import time
+import unittest
+
 import captive_rabbit.rabbit
 import rabbit_droppings
-import unittest
 
 
 class TestRabbit(unittest.TestCase):
@@ -41,11 +44,43 @@ class TestRabbit(unittest.TestCase):
     def test_write(self):
         captive_queue = self.captive_rabbit.make_queue()
         queue = self.rabbit.queue(captive_queue.name)
-        queue.publish(self.make_message("foo"))
-        queue.publish(self.make_message("bar"))
+        message = rabbit_droppings.Message()
+        message.body = "body"
+        now = math.floor(time.time())
+        message.properties = {
+            'content_type': 'text/plain',
+            'content_encoding': '8BIT',
+            'headers': {'foo': 'bar'},
+            'delivery_mode': 2,
+            'priority': 0,
+            'correlation_id': 'abc123',
+            'reply_to': 'reply_queue',
+            'expiration': '12345678',
+            'message_id': 'def456',
+            'timestamp': now,
+            'type': 'test_message',
+            'user_id': 'guest',
+            'app_id': 'foo.py',
+            'cluster_id': 'cluster1',
+            }
+        queue.publish(message)
         self.rabbit.disconnect()
-        self.assertEquals(captive_queue.read().body, "foo")
-        self.assertEquals(captive_queue.read().body, "bar")
+        message = captive_queue.read()
+        self.assertEquals(message.body, "body")
+        self.assertEquals(message.properties.content_type, 'text/plain')
+        self.assertEquals(message.properties.content_encoding, '8BIT')
+        self.assertEquals(message.properties.headers, {'foo': 'bar'})
+        self.assertEquals(message.properties.delivery_mode, 2)
+        self.assertEquals(message.properties.priority, 0)
+        self.assertEquals(message.properties.correlation_id, 'abc123')
+        self.assertEquals(message.properties.reply_to, 'reply_queue')
+        self.assertEquals(message.properties.expiration, '12345678')
+        self.assertEquals(message.properties.message_id, 'def456')
+        self.assertEquals(message.properties.timestamp, now)
+        self.assertEquals(message.properties.type, 'test_message')
+        self.assertEquals(message.properties.user_id, 'guest')
+        self.assertEquals(message.properties.app_id, 'foo.py')
+        self.assertEquals(message.properties.cluster_id, 'cluster1')
 
     def read_and_ack(self, queue):
         message = queue.read()

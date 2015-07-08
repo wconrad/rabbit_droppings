@@ -27,6 +27,8 @@ class Queue:
         self._channel.basic_ack(delivery_tag)
 
     def publish(self, message):
+        pika_message = message.to_pika_message()
         self._channel.basic_publish(exchange='',
                                     routing_key=self.name,
+                                    properties=pika_message.properties,
                                     body=message.body)
