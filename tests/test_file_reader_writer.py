@@ -12,16 +12,18 @@ class TestFileWriter(unittest.TestCase):
         file_writer = rabbit_droppings.FileWriter(path)
         file_writer.write(self.make_message("1"))
         file_writer.write(self.make_message("2"))
+        file_writer.close()
         file_reader = rabbit_droppings.FileReader(path)
         self.assertEquals(file_reader.read().body, "1")
         self.assertEquals(file_reader.read().body, "2")
         self.assertEquals(file_reader.read(), None)
 
-    def test_close(self):
+    def test_close_reader(self):
         path = self.make_temp_path()
         file_writer = rabbit_droppings.FileWriter(path)
         file_writer.write(self.make_message("1"))
         file_writer.write(self.make_message("2"))
+        file_writer.close()
         file_reader = rabbit_droppings.FileReader(path)
         self.assertEquals(file_reader.read().body, "1")
         file_reader.close()
