@@ -17,6 +17,18 @@ class TestFileWriter(unittest.TestCase):
         self.assertEquals(file_reader.read().body, "1")
         self.assertEquals(file_reader.read().body, "2")
         self.assertEquals(file_reader.read(), None)
+        file_reader.close()
+
+    def test_flush(self):
+        path = self.make_temp_path()
+        file_writer = rabbit_droppings.FileWriter(path)
+        file_reader = rabbit_droppings.FileReader(path)
+        file_writer.write(self.make_message("1"))
+        self.assertEquals(file_reader.read(), None)
+        file_writer.flush()
+        self.assertEquals(file_reader.read().body, "1")
+        file_writer.close()
+        file_reader.close()
 
     def test_close_reader(self):
         path = self.make_temp_path()
@@ -28,6 +40,16 @@ class TestFileWriter(unittest.TestCase):
         self.assertEquals(file_reader.read().body, "1")
         file_reader.close()
         self.assertRaises(ValueError, file_reader.read)
+
+    def test_close_writer(self):
+        path = self.make_temp_path()
+        file_writer = rabbit_droppings.FileWriter(path)
+        file_reader = rabbit_droppings.FileReader(path)
+        file_writer.write(self.make_message("1"))
+        self.assertEquals(file_reader.read(), None)
+        file_writer.close()
+        self.assertEquals(file_reader.read().body, "1")
+        file_reader.close()
 
     def make_temp_path(self):
         tf = tempfile.NamedTemporaryFile()

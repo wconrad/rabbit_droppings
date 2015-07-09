@@ -14,7 +14,7 @@ class FileWriter:
         """Write a Message to the file"""
         self._writer.write(message)
 
-    def flush(self, message):
+    def flush(self):
         """Flush, ensuring that all messages are written to the file"""
         self._writer.flush()
 
