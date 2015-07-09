@@ -100,12 +100,23 @@ class Queue:
 
         Args:
           path [str] The path of the file
-          destructive [bool] if true, the queue will be emptied after it is
-            successfully dumped.
         """
         file_reader = FileReader(path)
+        try:
+            self.restore(file_reader)
+        finally:
+            file_reader.close()
+
+    def restore(self, reader):
+        """Restore a queue from a message reader.  This publishes to the queue
+        any messages returned by the reader.  Any existing messages in the queue will
+        still be in the queue.
+
+        Args:
+          path [str] The path of the file
+        """
         while True:
-            msg = file_reader.read()
+            msg = reader.read()
             if msg is None:
                 break
             self.publish(msg)
