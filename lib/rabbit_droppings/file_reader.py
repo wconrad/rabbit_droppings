@@ -1,6 +1,7 @@
 from reader import Reader
 
 
+#todo rename to DiskReader
 class FileReader:
     """Read rabbit messages from a file."""
 
@@ -14,5 +15,6 @@ class FileReader:
         self._reader.close()
 
     def read(self):
-        """Read a message from the file.  Returns a Message"""
+        """Read a message from the file.  Returns a Message, or None if
+        there are no more"""
         return self._reader.read()

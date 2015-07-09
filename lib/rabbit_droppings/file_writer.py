@@ -1,6 +1,7 @@
 from writer import Writer
 
 
+#todo rename to DiskWriter
 class FileWriter:
     """Write rabbit messages to a file in a format that the FileReader can
     read"""
