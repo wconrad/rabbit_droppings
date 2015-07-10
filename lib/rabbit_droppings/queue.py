@@ -1,7 +1,6 @@
 from pika_message import PikaMessage
 
-from rabbit_droppings import FileWriter
-from rabbit_droppings import FileReader
+from reader import Reader
 
 
 class Queue:
@@ -67,20 +66,6 @@ class Queue:
                                     properties=pika_message.properties,
                                     body=message.body)
 
-    def dump_to_disk(self, path, destructive=False):
-        """Dump the queue to disk.
-
-        Args:
-          path [str] The path of the file
-          destructive [bool] if true, the queue will be emptied after it is
-            successfully dumped.
-        """
-        file_writer = FileWriter(path)
-        try:
-            self.dump(file_writer, destructive)
-        finally:
-            file_writer.close()
-
     def dump(self, writer, destructive=False):
         """Dump the queue to a Writer."""
         last_msg_written = None
@@ -95,20 +80,6 @@ class Queue:
                 self.ack(last_msg_written, multiple=True)
             else:
                 self.nack(last_msg_written, multiple=True)
-
-    def restore_from_disk(self, path):
-        """Restore a queue from a disk file.  This publishes to the queue any
-        messages in the disk file.  Any existing messages in the queue will
-        still be in the queue.
-
-        Args:
-          path [str] The path of the file
-        """
-        file_reader = FileReader(path)
-        try:
-            self.restore(file_reader)
-        finally:
-            file_reader.close()
 
     def restore(self, reader):
         """Restore a queue from a message reader.  This publishes to the queue
