@@ -25,10 +25,11 @@ class Queue:
         """
         method_frame, header_frame, body = self._channel.basic_get(self.name)
         if method_frame:
-            message = PikaMessage(method_frame,
-                                  header_frame,
-                                  body).to_message()
-            return message
+            pika_message = PikaMessage(body,
+                                       delivery_info=method_frame,
+                                       properties=header_frame,
+                                       )
+            return pika_message.to_message()
         else:
             return None
 

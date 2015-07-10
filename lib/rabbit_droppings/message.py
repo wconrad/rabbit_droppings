@@ -77,5 +77,7 @@ class Message:
             cluster_id=self.properties.get('cluster_id'),
             )
         body = self.body
-        return pika_message.PikaMessage(delivery_info, properties, body)
+        return pika_message.PikaMessage(body,
+                                        properties=properties,
+                                        delivery_info=delivery_info)
 

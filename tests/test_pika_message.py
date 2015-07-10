@@ -11,6 +11,10 @@ class TestPikaMessage(unittest.TestCase):
         def __init__(self, delivery_tag):
             self.delivery_tag = delivery_tag
 
+    def test_defaults(self):
+        msg = rabbit_droppings.PikaMessage("foo")
+        self.assertEqual(msg.body, "foo")
+
     def test_to_message(self):
         now = time.time()
         delivery_info = pika.spec.Basic.GetOk(
@@ -32,7 +36,9 @@ class TestPikaMessage(unittest.TestCase):
             app_id='foo.py',
             cluster_id='cluster1')
         body = 'Your ad in this spot'
-        pika_message = rabbit_droppings.PikaMessage(delivery_info, properties, body)
+        pika_message = rabbit_droppings.PikaMessage(body,
+                                                    properties=properties,
+                                                    delivery_info=delivery_info)
         message = pika_message.to_message()
         self.assertEqual(message.body, 'Your ad in this spot')
         self.assertEqual(message.properties['content_type'], 'text/plain')

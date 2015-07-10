@@ -1,12 +1,16 @@
+import pika
+
 import message
 
 
 class PikaMessage:
 
-    #todo reorder args to (body, property, delivery_info)
-    #todo default for properties
-    #toto default for delivery_info
-    def __init__(self, delivery_info, properties, body):
+    def __init__(
+        self,
+        body,
+        properties=pika.BasicProperties,
+        delivery_info=pika.spec.Basic.GetOk,
+        ):
         """
         Create an instance.
         args:
