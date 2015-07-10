@@ -1,11 +1,12 @@
 from writer import Writer
 
 
-#todo rename to DiskWriter
+#todo delete
 class FileWriter:
     """Write rabbit messages to a file in a format that the FileReader can
     read"""
 
+    #todo accept mode
     def __init__(self, path):
         """Create a new instance given the path of the file"""
         output = open(path, "w")

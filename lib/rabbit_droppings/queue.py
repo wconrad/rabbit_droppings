@@ -81,17 +81,19 @@ class Queue:
             file_writer.close()
 
     def dump(self, writer, destructive=False):
-        msg = None
+        """Dump the queue to a Writer."""
+        last_msg_written = None
         while True:
             msg = self.read()
             if msg is None:
                 break
             writer.write(msg)
-        if msg is not None:
+            last_msg_written = msg
+        if last_msg_written is not None:
             if destructive:
-                ack(msg, multiple=True)
+                self.ack(last_msg_written, multiple=True)
             else:
-                nak(msg, multiple=True)
+                self.nack(last_msg_written, multiple=True)
 
     def restore_from_disk(self, path):
         """Restore a queue from a disk file.  This publishes to the queue any

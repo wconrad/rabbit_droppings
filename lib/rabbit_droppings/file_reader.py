@@ -1,7 +1,7 @@
 from reader import Reader
 
 
-#todo rename to DiskReader
+#toto delete
 class FileReader:
     """Read rabbit messages from a file."""
 
