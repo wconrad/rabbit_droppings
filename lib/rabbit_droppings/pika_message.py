@@ -4,6 +4,11 @@ import message
 
 
 class PikaMessage:
+    """A wrapper around a Pika message.
+
+    In the pika library, a message comes in three parts: A body, a
+    properties object, and when reading, a delivery info object.
+    This class bundles those three things together."""
 
     def __init__(
         self,
@@ -23,6 +28,7 @@ class PikaMessage:
         self.body = body
 
     def to_message(self):
+        """Convert to the library's standard Message class."""
         msg = message.Message()
         msg.body = self.body
         msg.properties = {

@@ -52,3 +52,17 @@ message:
     except (pika.exceptions.AMQPError, pika.exceptions.ChannelError) as e:
         pika_message = rabbit_droppings.PikaMessage(body, properties=properties)
         self._rd_writer.write(pika_message)
+
+# Versioning
+
+This library practices [Semantic Versioning](http://semver.org/).
+Semantic versioning makes these promises:
+
+A patch-level version bump (e.g. "1.0.0" to "1.0.1") does not change the
+public API.
+
+A minor-level version bump (e.g. "1.0.0" to "1.1.0") changes the public API
+in a backward-compatible manner.
+
+A major-level version bump (e.g. "1.0.0" to "2.0.0") changes the public API
+in some way that is not backward compatible.

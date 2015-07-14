@@ -7,7 +7,8 @@ class Writer:
     in a format that the Reader class can read."""
 
     def __init__(self, output):
-        """Create an instance given an output"""
+        """Create an instance given an output.  The output should
+        quack like a file, responding to write(), flush() and close()"""
         self._output = output
 
     def write(self, message, flush=True):

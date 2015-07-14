@@ -4,15 +4,14 @@ from reader import Reader
 
 
 class Queue:
+    """A RabbitMQ queue.
+
+    Not for external use."""
 
     def __init__(self, channel, name):
+        """Create an instance given a pika.Channel and the queue's name."""
         self._channel = channel
         self.name = name
-
-    def publish(self, body):
-        self._channel.basic_publish(exchange='',
-                                    routing_key=self.name,
-                                    body=body)
 
     def read(self):
         """Read and return a Message, or None if the queue is empty.
