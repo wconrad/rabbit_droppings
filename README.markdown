@@ -18,9 +18,9 @@ package, you can back up the queue to a file.  If the program
 processes the messages incorrectly, you can use use a program in this
 package to restore the queue from the file.
 
-# How to save a message
+# How to save a message from code
 
-## When using the pika library
+## Saving a message with the pika library
 
 If you have a program using the pika library to publish messages to a
 RabbitMQ server, here's how to save messages that could not be
@@ -50,8 +50,5 @@ message:
                               properties=properties,
                               body=body)
     except (pika.exceptions.AMQPError, pika.exceptions.ChannelError) as e:
-        pika_message = rabbit_droppings.PikaMessage(body, properties)
+        pika_message = rabbit_droppings.PikaMessage(body, properties=properties)
         self._rd_writer.write(pika_message)
-        # Flush the writer.  Without this, a program crash could cause
-        # the message to not actually be in the file.
-        self._rd_writer.flush()
