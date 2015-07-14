@@ -4,8 +4,8 @@
 from message import Message
 from pika_message import PikaMessage
 from queue import _Queue
-from rabbit import Rabbit
-from rabbit_config import RabbitConfig
+from rabbit import _Rabbit
+from rabbit_config import _RabbitConfig
 from reader import Reader
 from writer import Writer
 

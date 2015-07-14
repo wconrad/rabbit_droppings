@@ -3,13 +3,13 @@ import pika
 from rabbit_droppings.queue import _Queue
 
 
-class Rabbit:
+class _Rabbit:
     """A connection with a Rabbit server.
 
     Not for external use"""
 
     def __init__(self, config):
-        """Create an instance given a RabbitConfig"""
+        """Create an instance given a _RabbitConfig"""
         self._config = config
         self._connected = False
 

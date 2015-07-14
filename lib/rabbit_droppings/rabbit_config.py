@@ -1,4 +1,4 @@
-class RabbitConfig:
+class _RabbitConfig:
     """Parameters for connecting to the RabbitMQ server.
 
     Properties:

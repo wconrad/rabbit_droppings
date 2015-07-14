@@ -13,9 +13,9 @@ class TestQueueBackup(unittest.TestCase):
 
     def setUp(self):
         self.captive_rabbit = captive_rabbit.Rabbit()
-        rabbit_config = rabbit_droppings.RabbitConfig()
+        rabbit_config = rabbit_droppings._RabbitConfig()
         rabbit_config.host = self.captive_rabbit.host
-        self.rabbit = rabbit_droppings.Rabbit(rabbit_config)
+        self.rabbit = rabbit_droppings._Rabbit(rabbit_config)
 
     def tearDown(self):
         self.captive_rabbit.teardown()
