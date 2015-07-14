@@ -1,6 +1,6 @@
 import pika
 
-from rabbit_droppings.queue import Queue
+from rabbit_droppings.queue import _Queue
 
 
 class Rabbit:
@@ -34,6 +34,6 @@ class Rabbit:
         self._connected = False
 
     def queue(self, name):
-        """Given a queue's name, return an instance of Queue"""
+        """Given a queue's name, return an instance of _Queue"""
         self.connect()
-        return Queue(self._channel, name)
+        return _Queue(self._channel, name)

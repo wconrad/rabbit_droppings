@@ -3,7 +3,7 @@ from pika_message import PikaMessage
 from reader import Reader
 
 
-class Queue:
+class _Queue:
     """A RabbitMQ queue.
 
     Not for external use."""

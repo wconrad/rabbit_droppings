@@ -3,7 +3,7 @@
 
 from message import Message
 from pika_message import PikaMessage
-from queue import Queue
+from queue import _Queue
 from rabbit import Rabbit
 from rabbit_config import RabbitConfig
 from reader import Reader
