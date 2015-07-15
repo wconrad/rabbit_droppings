@@ -22,6 +22,48 @@ package to restore the queue from the file.
 file, use a text editor or a one-off program to change the file, and
 then write the messages back into the queue.
 
+# Backup format
+
+Queues are backed up and restored from text files containing json.
+Each line in the file is a JSON dictionary with this structure:
+
+```
+{
+    "body": "This is a test",
+    "delivery_info": {
+        "delivery_tag": 1
+    },
+    "properties": {
+        "app_id": null,
+        "cluster_id": null,
+        "content_encoding": null,
+        "content_type": "text/plain",
+        "correlation_id": null,
+        "delivery_mode": 2,
+        "expiration": null,
+        "headers": {
+            "client_id": null,
+            "host_ip": "10.0.0.15",
+            "host_name": "treebeard",
+            "library_id": "olio_msg (Python) 1.9.0",
+            "metadata_version": "1.0.0",
+            "program_name": "olio_msg_send_test_messages",
+            "version": "1.0.0"
+        },
+        "message_id": "1df3eb23ffeb476b8355d87b475eb627",
+        "priority": null,
+        "reply_to": null,
+        "timestamp": 1434644774,
+        "type": "test",
+        "user_id": null
+    }
+}
+```
+
+The line was shown pretty-printed, but it's actually just one line:
+
+    {"body": "This is a test", "delivery_info": {"delivery_tag": 1}, "properties": {"timestamp": 1434644774, ...}}
+
 # Using the command-line utilities
 
 To backup a queue
