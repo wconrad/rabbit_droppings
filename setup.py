@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 from setuptools import setup
-import olio_msg
+import rabbit_droppings
 
 SCRIPTS = [
     'bin/rabbit_droppings',
@@ -12,8 +12,8 @@ setup(
     author_email='kf7qga@gmail.com',
     description='Backup/Restore RabbitMQ queues',
     long_description_markdown_filename='README.markdown',
-    name=olio_msg.NAME,
-    version=olio_msg.VERSION,
+    name=rabbit_droppings.NAME,
+    version=rabbit_droppings.VERSION,
     packages=['lib/rabbit_droppings'],
     setup_requires=['setuptools-markdown'],
     scripts=SCRIPTS,
