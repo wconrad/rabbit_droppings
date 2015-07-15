@@ -66,3 +66,14 @@ in a backward-compatible manner.
 
 A major-level version bump (e.g. "1.0.0" to "2.0.0") changes the public API
 in some way that is not backward compatible.
+
+# Development
+
+Running the tests requires a RabbitMQ server installed locally.  The
+tests are known to pass with these RabbitMQ versions:
+
+* 3.4.1
+
+To run the tests:
+
+    ./setup.py test
