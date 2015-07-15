@@ -18,9 +18,30 @@ package, you can back up the queue to a file.  If the program
 processes the messages incorrectly, you can use use a program in this
 package to restore the queue from the file.
 
-# How to save a message from code
+# Using the command-line utilities
 
-## Saving a message with the pika library
+To backup a queue
+
+    rabbit_droppings --host localhost --queue jobs \
+      --file /path/to/save/file --dump
+
+To backup and purge a queue
+
+    rabbit_droppings --host localhost --queue jobs \
+      --file /path/to/save/file --purge
+
+To restore a queue
+
+    rabbit_droppings --host localhost --queue jobs \
+      --file /path/to/save/file --restore
+
+These examples use the long options for clarity.  Most
+options have short forms:
+
+    rabbit_droppings -H localhost -q jobs \
+      -f /path/to/save/file -d
+
+# Saving a message with the pika library
 
 If you have a program using the pika library to publish messages to a
 RabbitMQ server, here's how to save messages that could not be

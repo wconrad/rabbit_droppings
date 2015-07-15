@@ -1,2 +1,112 @@
 #!/usr/bin/env python
 
+import optparse
+import os
+import sys
+
+# During development, we want to load the library from the development
+# directory, not from whatever pip is installed.
+PROJECT_PATH = os.path.abspath(os.path.split(sys.argv[0])[0])
+sys.path.insert(0, '%s/../lib' % (PROJECT_PATH))
+
+from rabbit_droppings import Writer
+from rabbit_droppings import _Rabbit
+from rabbit_droppings import _RabbitConfig
+
+class Arguments:
+
+    @staticmethod
+    def parse():
+        parser = optparse.OptionParser()
+        parser.add_option('-H', '--host',
+                          dest='host',
+                          help='Rabbit host',
+                          default='localhost')
+        parser.add_option('-q', '--queue',
+                          dest='queue',
+                          help='Queue name')
+        parser.add_option('-f', '--file',
+                          dest='filename',
+                          help='File path')
+        parser.add_option('-d', '--dump',
+                          dest='command',
+                          action='store_const',
+                          const='dump',
+                          help='Dump the queue to a file')
+        parser.add_option('-r', '--restore',
+                          dest='command',
+                          action='store_const',
+                          const='restore',
+                          help='Restore the queue from a file')
+        parser.add_option('--purge',
+                          dest='command',
+                          action='store_const',
+                          const='purge',
+                          help='Dump the queue to a file, then purge the queue')
+        (options, args) = parser.parse_args()
+        if args:
+            sys.exit('Extra arguments: %s' % repr(args))
+        if options.queue is None:
+            sys.exit('--queue option is required')
+        if options.filename is None:
+            sys.exit('--file option is required')
+        return options
+
+class Command:
+
+    def __init__(self, name):
+        self._name = name
+
+    def execute(self):
+        pass
+
+class Dump(Command):
+
+    def execute(self):
+        output = open(self.filename, "w")
+        writer = Writer(output)
+        self.queue.dump(writer)
+        writer.close
+        pass
+
+class Purge(Command):
+
+    def execute(self):
+        pass
+
+class Restore(Command):
+
+    def execute(self):
+        pass
+
+class Commands:
+
+    def get(self, command_name):
+        class_name = command_name.capitalize()
+        klass = globals()[class_name]
+        return klass(command_name)
+
+class Main:
+
+    def __init__(self):
+        self._options = Arguments.parse()
+        self._commands = Commands()
+        self._rabbit = self._make_rabbit()
+        self._queue = self._rabbit.queue(self._options.queue)
+
+    def run(self):
+        if self._options.command is None:
+            return        
+        self._rabbit.connect()
+        command = self._commands.get(self._options.command)
+        command.queue = self._queue
+        command.filename = self._options.filename
+        command.execute()
+        self._rabbit.disconnect()
+
+    def _make_rabbit(self):
+        config = _RabbitConfig(host=self._options.host)
+        return _Rabbit(config)
+
+if __name__ == '__main__':
+    Main().run()

@@ -72,8 +72,9 @@ class _Queue:
             msg = self.read()
             if msg is None:
                 break
-            writer.write(msg)
+            writer.write(msg, flush=False)
             last_msg_written = msg
+        writer.flush()
         if last_msg_written is not None:
             if destructive:
                 self.ack(last_msg_written, multiple=True)
