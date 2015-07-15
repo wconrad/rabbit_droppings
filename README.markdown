@@ -62,7 +62,7 @@ Each line in the file is a JSON dictionary with this structure:
 
 The line was shown pretty-printed, but it's actually just one line:
 
-    {"body": "This is a test", "delivery_info": {"delivery_tag": 1}, "properties": {"timestamp": 1434644774, ...}}
+    {"body": "This is a test", "delivery_info": {...}, "properties: {...}}
 
 # Using the command-line utilities
 
