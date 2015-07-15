@@ -18,6 +18,10 @@ package, you can back up the queue to a file.  If the program
 processes the messages incorrectly, you can use use a program in this
 package to restore the queue from the file.
 
+* You want to edit messages in a queue.  You can dump the queue to a
+file, use a text editor or a one-off program to change the file, and
+then write the messages back into the queue.
+
 # Using the command-line utilities
 
 To backup a queue
@@ -81,6 +85,12 @@ in a backward-compatible manner.
 
 A major-level version bump (e.g. "1.0.0" to "2.0.0") changes the public API
 in some way that is not backward compatible.
+
+# Python version
+
+Known to work with:
+
+* Python 2.6.9
 
 # Development
 
