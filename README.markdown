@@ -35,12 +35,6 @@ To restore a queue
     rabbit_droppings --host localhost --queue jobs \
       --file /path/to/save/file --restore
 
-These examples use the long options for clarity.  Most
-options have short forms:
-
-    rabbit_droppings -H localhost -q jobs \
-      -f /path/to/save/file -d
-
 # Saving a message with the pika library
 
 If you have a program using the pika library to publish messages to a
