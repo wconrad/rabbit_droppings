@@ -130,9 +130,10 @@ in some way that is not backward compatible.
 
 # Python version
 
-Known to work with:
+Known to work with Python versions:
 
-* Python 2.6.9
+* 2.6.9
+* 2.7.9
 
 # Development
 
