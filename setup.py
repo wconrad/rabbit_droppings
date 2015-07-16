@@ -1,12 +1,9 @@
 #!/usr/bin/env python
 
-import os
-import sys
-sys.path.append(os.path.dirname(os.path.realpath(__file__)) + '/lib')
-
 from setuptools import setup
-import rabbit_droppings
 
+NAME = "rabbit_droppings"
+VERSION = "0.1.0"
 SCRIPTS = [
     'bin/rabbit_droppings',
 ]
@@ -16,8 +13,8 @@ setup(
     author_email='kf7qga@gmail.com',
     description='Backup/Restore RabbitMQ queues',
     long_description_markdown_filename='README.markdown',
-    name=rabbit_droppings.NAME,
-    version=rabbit_droppings.VERSION,
+    name=NAME,
+    version=VERSION,
     packages=['lib/rabbit_droppings'],
     setup_requires=['setuptools-markdown'],
     scripts=SCRIPTS,
