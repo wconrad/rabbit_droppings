@@ -155,3 +155,14 @@ tests are known to pass with these RabbitMQ versions:
 To run the tests:
 
     ./setup.py test
+
+## Working with the pypi test server
+
+To register (only once):
+
+    python setup.py register -r https://testpypi.python.org/pypi
+
+## To publish to the pypi test server
+
+    python setup.py bdist_wheel upload -r pypitest
+    python setup.py sdist upload -r pypitest
