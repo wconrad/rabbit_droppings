@@ -5,8 +5,8 @@ messages to and from disk.
 
 * A program cannot publish a message to RabbitMQ, but does not want to
 lose the message.  Using this library, the program can save the
-message to a file.  Later after fixing the problem, a person can use a
-utility in this package to publish the message.
+message to a file.  Later, after fixing the problem, a person can use
+a utility in this package to publish the message.
 
 * The consumer has a bug and messages are piling up in a queue.  You
 have fixed the bug and your tests seem to indicate the consumer will
@@ -119,15 +119,23 @@ message:
 # Versioning
 
 This library practices [Semantic Versioning](http://semver.org/).
-Semantic versioning makes these promises:
 
-A patch-level version bump (e.g. "1.0.0" to "1.0.1") does not change the
+This library is currently in alpha; it's versions look like "0.1.0",
+"0.2.0", etc.  There are no guarantees with alpha versions: Any
+version bump could be any combination of bug fix, backwards compatible
+API change, or breaking API change.
+
+When the library becomes stable, its version number will be bumped to
+"1.0.0".  Semantic versioning makes these promises for stable
+versions:
+
+* A patch-level version bump (e.g. "1.0.0" to "1.0.1") does not change the
 public API.
 
-A minor-level version bump (e.g. "1.0.0" to "1.1.0") changes the public API
+* A minor-level version bump (e.g. "1.0.0" to "1.1.0") changes the public API
 in a backward-compatible manner.
 
-A major-level version bump (e.g. "1.0.0" to "2.0.0") changes the public API
+* A major-level version bump (e.g. "1.0.0" to "2.0.0") changes the public API
 in some way that is not backward compatible.
 
 # Python version
