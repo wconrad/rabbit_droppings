@@ -1,9 +1,6 @@
 This is a Python library and utilities for saving and loading RabbitMQ
 messages to and from disk.
 
-**This is a work in progress--it's not ready to use yet.  Check back
-later.**
-
 # Why?
 
 * A program cannot publish a message to RabbitMQ, but does not want to
@@ -21,6 +18,11 @@ package to restore the queue from the file.
 * You want to edit messages in a queue.  You can dump the queue to a
 file, use a text editor or a one-off program to change the file, and
 then write the messages back into the queue.
+
+# Why not?
+
+This library is brand new and has not been battle tested.  Proceed
+with caution.
 
 # Backup format
 
