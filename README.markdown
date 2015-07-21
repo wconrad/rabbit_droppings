@@ -129,14 +129,14 @@ When the library becomes stable, its version number will be bumped to
 "1.0.0".  Semantic versioning makes these promises for stable
 versions:
 
-* A patch-level version bump (e.g. "1.0.0" to "1.0.1") does not change the
-public API.
+* A patch-level version bump (e.g. "1.0.0" to "1.0.1") does not change
+the public API.
 
-* A minor-level version bump (e.g. "1.0.0" to "1.1.0") changes the public API
-in a backward-compatible manner.
+* A minor-level version bump (e.g. "1.0.0" to "1.1.0") changes the
+public API in a backward-compatible manner.
 
-* A major-level version bump (e.g. "1.0.0" to "2.0.0") changes the public API
-in some way that is not backward compatible.
+* A major-level version bump (e.g. "1.0.0" to "2.0.0") changes the
+public API in some way that is not backward compatible.
 
 # Python version
 
