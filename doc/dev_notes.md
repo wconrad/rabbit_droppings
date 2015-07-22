@@ -12,7 +12,6 @@ To register (only once):
 
 To publish to the pypi test server:
 
-    python setup.py bdist_wheel upload -r pypitest
     python setup.py sdist upload -r pypitest
 
 To install from the pypi test server:
@@ -35,10 +34,23 @@ To register (only once):
 
 To publish to the "real" pypi server:
 
-    python setup.py bdist_wheel upload -r pypi
     python setup.py sdist upload -r pypi
 
 To see the packages installed on the "real" pypi server, send your
 browser to:
 
     https://pypi.python.org/pypi?%3Aaction=pkg_edit&name=rabbit_droppings
+
+## Why I'm not using wheels
+
+It is possible to distribute the package as a wheel:
+
+    python setup.py bdist_wheel upload -r pypi
+    python setup.py bdist_wheel upload -r pypitest
+
+But wheels don't always get used.  The problem is that "pip install"
+will install from a wheel, and work.  But installing the package as a
+dependency of another package will use the source install, and that
+might not work.  By not publishing the wheel at all, we can use "pip
+install" to test the source version of the package and ensure it
+works.
