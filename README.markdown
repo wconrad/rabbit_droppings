@@ -169,4 +169,4 @@ To publish to the pypi test server:
 
 To install from the pypi test server:
 
-    pip install -i https://testpypi.python.org/pypi <package name>
+    pip install -i https://testpypi.python.org/pypi rabbit_droppings
