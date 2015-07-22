@@ -3,7 +3,7 @@
 from setuptools import setup
 
 NAME = "rabbit_droppings"
-VERSION = "0.2.0"
+VERSION = "0.3.0"
 SCRIPTS = [
     'bin/rabbit_droppings',
 ]

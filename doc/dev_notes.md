@@ -52,5 +52,5 @@ But wheels don't always get used.  The problem is that "pip install"
 will install from a wheel, and work.  But installing the package as a
 dependency of another package will use the source install, and that
 might not work.  By not publishing the wheel at all, we can use "pip
-install" to test the source version of the package and ensure it
-works.
+install" (from the testpypi server) to test the source version of the
+package and ensure it works.
