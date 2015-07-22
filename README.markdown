@@ -162,7 +162,11 @@ To register (only once):
 
     python setup.py register -r https://testpypi.python.org/pypi
 
-## To publish to the pypi test server
+To publish to the pypi test server:
 
     python setup.py bdist_wheel upload -r pypitest
     python setup.py sdist upload -r pypitest
+
+To install from the pypi test server:
+
+    pip install -i https://testpypi.python.org/pypi <package name>

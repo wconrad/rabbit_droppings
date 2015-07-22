@@ -21,7 +21,7 @@ setup(
     keywords = "rabbit rabbitmq backup restore",
     long_description_markdown_filename='README.markdown',
     name=NAME,
-    packages=['lib/rabbit_droppings'],
+    packages=['rabbit_droppings'],
     scripts=SCRIPTS,
     setup_requires=['setuptools-markdown'],
     test_suite="tests",
