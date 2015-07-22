@@ -156,17 +156,12 @@ To run the tests:
 
     ./setup.py test
 
-## Working with the pypi test server
+# Releasing
 
-To register (only once):
+* Check that test pass.
 
-    python setup.py register -r https://testpypi.python.org/pypi
+* Bump the version in setup.py.
 
-To publish to the pypi test server:
+* Create a git tag with the version.
 
-    python setup.py bdist_wheel upload -r pypitest
-    python setup.py sdist upload -r pypitest
-
-To install from the pypi test server:
-
-    pip install -i https://testpypi.python.org/pypi rabbit_droppings
+* Upload to the pypi server
