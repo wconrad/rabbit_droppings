@@ -4,6 +4,11 @@ import optparse
 import os
 import sys
 
+# During development, we want to load the library from the development
+# directory, not from whatever pip is installed.
+PROJECT_PATH = os.path.abspath(os.path.split(sys.argv[0])[0])
+sys.path.insert(0, '%s/..' % (PROJECT_PATH))
+
 from rabbit_droppings import Reader
 from rabbit_droppings import Writer
 from rabbit_droppings import _Rabbit
